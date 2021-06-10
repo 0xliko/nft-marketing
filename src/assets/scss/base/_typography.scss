@@ -1,0 +1,26 @@
+@import "../base/variables";
+body {
+  font-family: 'Overpass', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: $white;
+  background: $bg-dark;
+  font-weight: 400;
+}
+
+#wrapper{
+
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+
+
+}
+.overay-warpper{
+  display: block;
+  z-index:101;
+}
+
+.recipe-toaster{
+  top: 70px !important;
+}

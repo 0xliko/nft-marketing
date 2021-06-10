@@ -1,0 +1,101 @@
+@import "../base/variables";
+.navbar-custom {
+   background-color: $bg-dark;
+   padding: 0 15px;
+   position: fixed;
+   left: $leftbar-width;
+   right: 0;
+   height: $topbar-height;
+   z-index: 100;
+   .header-container{
+
+      padding:0 50px;
+      width: 100%;
+      .menu-container{
+         width: 50%;
+         margin-top: 15px;
+         .sidebar-toggle{
+            display: none;
+         }
+         .link{
+            color: white;
+            text-decoration: none;
+            padding: 10px 12px;
+            float: left;
+            &.active{
+               color: #FFF266;
+            }
+         }
+         .favorite{
+            padding: 10px;
+            float: left;
+            color: $red2;
+         }
+         .connect-wallet{
+            border-radius: 20px;
+            background: $bg-card-dark;
+            float: right;
+            padding: 4px 18px;
+            color: white;
+            text-decoration: none;
+            outline: none;
+            margin-top: -3px;
+            img{
+               margin-right: 8px;
+            }
+            box-shadow: $box-shadow-black;
+            &:hover{
+               background: $bg-card-dark-hover;
+            }
+            &:focus{
+               box-shadow: $box-shadow-light;
+               outline: none;
+            }
+         }
+
+      }
+
+      .search-box-container{
+         width: 50%;
+         margin-top: 15px;
+         .search-box{
+             border-radius: 5px;
+             box-shadow: $box-shadow-black;
+             background: #1c2733;
+             padding: 10px 20px;
+             input{
+                background: transparent;
+                border: none;
+                outline: none;
+                padding-left: 10px;
+                width: calc(100% - 20px);
+                color: $white;
+             }
+         }
+      }
+   }
+   .modal-dialog .modal-content{
+      background: $bg-card-dark;
+      .modal-body,.modal-header,.modal-footer{
+         border: none;
+      }
+      .modal-header .close{
+         color: $white;
+      }
+      .modal-body{
+         .provider-button{
+             text-align: left;
+             width: 100%;
+             margin: 10px 0;
+         }
+      }
+      .modal-footer{
+         padding: 1rem;
+         a{
+            width: 100%;
+            margin: 0;
+         }
+      }
+   }
+}
+
