@@ -3,46 +3,47 @@ export const ADD_SELECTED_SUBCATEGORY = 'ADD_SELECTED_SUBCATEGORY'
 export const REMOVE_SELECTED_SUBCATEGORY = 'REMOVE_SELECTED_SUBCATEGORY'
 export const SET_SELECTED_SUBCATEGORYS = 'SET_SELECTEDS'
 export const TOGGLE_SELECTED_SUBCATEGORY = 'TOGGLE_SELECTEDS_SUBCATEGORY'
+export const REMOVE_ALL_SELECTED_SUBCATEGORY = 'REMOVE_ALL_SELECTED_SUBCATEGORY'
+
 import {IProps} from "../Interface";
 
-const add = (items:IProps,item:string): IProps => {
-    items["item_"+item] = item;
-    return items;
+const add = (items:string[],item:string): string[] => {
+    var index = items.indexOf(item);
+    if(index == -1) items.push(item);
+    return items.sort((a,b)=>a>b?1:-1);
 }
 
-const remove = (items: IProps, item: string): IProps => {
-    delete items["item_"+item];
-    return items;
-
+const remove = (items: string[], item: string): string[] => {
+    var index = items.indexOf(item);
+    if(index > -1) items.splice(index,1);
+    return items.sort((a,b)=>a>b?1:-1);
 }
-const toggle = (items: IProps, item: string): IProps => {
-    items["side_bar"] = item;
-    return items;
-    if (items["item_"+item])
-         remove(items,item)
-    else
-        add(items,item);
-    return items
+const toggle = (items: string[], item: string): string[] => {
+    console.log(items,item)
+   if(items.indexOf(item)>-1) return remove(items,item);
+   else return add(items,item);
 }
 
-const selectedSubCategories = (state: IProps = {}, action: AnyAction) => {
-    let selectedSubCategoriesList;
-    console.log(state)
+const selectedSubCategories = (state: string = "", action: AnyAction) => {
+
+    let selectedSubCategoriesList:string[] = [];
+    selectedSubCategoriesList = state?state.split(","):[];
     switch (action.type) {
         case ADD_SELECTED_SUBCATEGORY:
-            selectedSubCategoriesList = add(state, action.item);
-            return selectedSubCategoriesList
+            selectedSubCategoriesList = add(selectedSubCategoriesList, action.item);
+            return selectedSubCategoriesList.join(",")
         case REMOVE_SELECTED_SUBCATEGORY:
-            selectedSubCategoriesList = remove(state, action.item)
-            return selectedSubCategoriesList
+            selectedSubCategoriesList = remove(selectedSubCategoriesList, action.item)
+            return selectedSubCategoriesList.join(",")
         case TOGGLE_SELECTED_SUBCATEGORY:
-            //selectedSubCategoriesList = toggle(state, action.item)
-            return action.item
-            return selectedSubCategoriesList
+            selectedSubCategoriesList = toggle(selectedSubCategoriesList, action.item)
+            return selectedSubCategoriesList.join(",")
         case SET_SELECTED_SUBCATEGORYS:
-            return action.items
+            return action.items.join(",");
+        case REMOVE_ALL_SELECTED_SUBCATEGORY:
+            return "";
         default:
-            return "";//state
+            return state;
     }
 }
 

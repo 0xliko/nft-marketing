@@ -1,6 +1,5 @@
 import React, {Component, useState, useEffect, useCallback} from 'react';
 import {useSelector, useDispatch,useStore} from 'react-redux'
-import {closeSideBar, openSideBar, setSelected, unSetSelected} from '../actions'
 import {State} from '../reducers'
 
 import ClassNames from 'classnames';
@@ -11,8 +10,9 @@ import atmosphere from '../assets/images/atmosphere.svg';
 import lighting from '../assets/images/lighting.svg';
 import surface from '../assets/images/surface.svg';
 import {IProps, ICategory, ISubCategory} from "../Interface";
-import {TOGGLE_SELECTED_SUBCATEGORY} from '../reducers/selectedSubCategories';
-import { MDBBtn,MDBIcon} from 'mdbreact';
+import {TOGGLE_SELECTED_SUBCATEGORY,REMOVE_ALL_SELECTED_SUBCATEGORY} from '../reducers/selectedSubCategories';
+import {MDBBtn, MDBIcon, MDBInput} from 'mdbreact';
+import {filter} from "minimatch";
 
 
 const icons: IProps = {
@@ -66,25 +66,34 @@ const Sidebar: React.FC<IProps> = ({}) => {
         }
     ];
     const [openedCategory, setOpenedCategory] = useState<string>("");
-    const [filterList, setFilterList] = useState<string[]>([]);
 
     const {selectedSubCategories} = useSelector((state: State) => state);
+
+    const filterListFromStoreValue = (storeValue:string):IProps =>{
+        let list = selectedSubCategories?selectedSubCategories.split(","):[];
+        var checkList:IProps = {};
+        list.map(item=>{
+            checkList[item] = true;
+        })
+        return checkList;
+    }
+
+    const initState = filterListFromStoreValue(selectedSubCategories);
+    const [filterList, setFilterList] = useState<IProps>(initState);
     const {uiStatus} = useSelector((state: State) => state);
     const {sidebar} = useSelector((state: State) => state.uiStatus);
 
     const reduxDispatch = useDispatch();
     const toggleSelectedSubCategory = (id: number) => {
         reduxDispatch({type:TOGGLE_SELECTED_SUBCATEGORY,item:id+""});
-        reduxDispatch(id>200?openSideBar():closeSideBar());
     }
     const store = useStore();
 
     useEffect(()=>{
-        console.log(selectedSubCategories,"------")
+        setFilterList(filterListFromStoreValue(selectedSubCategories));
     },[selectedSubCategories])
-    useEffect(()=>{
-        console.log(uiStatus,"---")
-    },[uiStatus])
+
+
 
 
 
@@ -120,10 +129,11 @@ const Sidebar: React.FC<IProps> = ({}) => {
                                 })}>
                                 {
                                     category.subcategories.map((item: ISubCategory, key: number) => {
-                                        return <li key={key} onClick={() => toggleSelectedSubCategory(item.id)}>
+
+                                        return <li key={key}>
                                             <input className="float-left mr-2" type="checkbox"
-                                                   defaultChecked={filterList.indexOf(item.id)>-1}
-                                            />
+                                                   checked={!!filterList[item.id+""]}
+                                                   onChange={() => toggleSelectedSubCategory(item.id)}/>
                                             <span className="float-left">{item.name}</span>
                                         </li>
                                     })
@@ -135,22 +145,29 @@ const Sidebar: React.FC<IProps> = ({}) => {
                 }
                 <div>
                     {
+
+
                         categries.map((category: ICategory, index: number) => {
 
-                            return <div key={index}>
+                            return <React.Fragment key={index}>
                                 {
                                     category.subcategories.map((item: ISubCategory, key: number) => {
-
-                                        return filterList.indexOf(item.id)>-1 && (
-                                            <a className="btn btn-sm btn-outline-success" key={key}>
+                                        let isChecked = filterList[item.id+""];
+                                        return isChecked && (
+                                            <a className="btn btn-sm btn-outline-primary" key={key}
+                                            onClick={()=>toggleSelectedSubCategory(item.id)}>
+                                                <i className="fa fa-times float-left"/>
                                                 <span className="float-left">{item.name}</span>
                                             </a>)
                                     })
                                 }
-                            </div>
+                            </React.Fragment>
                         })
                     }
                 </div>
+                <a className="reset-filter" onClick={()=>{
+                    reduxDispatch({type:REMOVE_ALL_SELECTED_SUBCATEGORY});
+                }}>Reset Filter</a>
             </ul>
 
 
