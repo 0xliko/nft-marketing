@@ -1,0 +1,42 @@
+@import "../base/variables";
+.product-preview{
+   background: $bg-card-dark;
+   position: relative;
+   font-size: 10px;
+   float: right;
+   height: 20vw;
+   margin-bottom: 10px;
+   width: 20vw;
+   .view{
+      position: absolute !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      width: 80% !important;
+      left:10%;
+      .mask{
+         p{
+           font-size: 16px;
+         }
+      }
+  }
+   img{
+     width: 100%;
+     object-fit: contain;
+  }
+   .product-favour-count{
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+     i.fa:before{
+        color:$red4;
+     }
+   }
+
+  .product-rotate{
+     position: absolute;
+     bottom: 5px;
+     right: 5px;
+     color: $blue3;
+  }
+}

@@ -8,17 +8,18 @@ interface ProductGroupProps {
     group:IProductGroup
 }
 const ProductGroup = ({group}:ProductGroupProps) => {
+
     const {favorites} = useSelector((state: State) => state);
 
-    const favoriteListFromStoreValue = (storeValue:string):string[] =>{
+    const favoriteListFromStoreValue = ():string[] =>{
         let list = favorites?favorites.split(","):[];
         return list;
     }
 
-    const initState = favoriteListFromStoreValue(favorites);
+    const initState = favoriteListFromStoreValue();
     const [favoriteList, setFavoriteList] = useState<string[]>(initState);
     useEffect(()=>{
-        setFavoriteList(favoriteListFromStoreValue(favorites));
+        setFavoriteList(favoriteListFromStoreValue());
     },[favorites]);
 
     return (

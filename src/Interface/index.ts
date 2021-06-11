@@ -31,6 +31,27 @@ export interface IProduct{
     favourCount:number,
     imgURL:any
 }
+export interface IActivity{
+    author:string,
+    action:string,
+    priceETH:number,
+    priceUSD:number,
+    date: Date
+}
+export interface IProductDetail{
+    id:number,
+    name:string,
+    price:number,
+    favourCount:number,
+    imgURL:any,
+    edition:string,
+    description:string,
+    series:string,
+    tag:string,
+    color:string,
+    activities:IActivity[],
+    author:string
+}
 export interface IProductGroup{
     name:string,
     items:IProduct[]
