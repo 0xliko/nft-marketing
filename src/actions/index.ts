@@ -1,6 +1,6 @@
-import { ADD_FAVORITE_PRODUCT,REMOVE_FAVORITE_PRODUCT,SET_FAVORITES } from '../reducers/favorites';
+import { ADD_FAVORITE,REMOVE_FAVORITE,SET_FAVORITES } from '../reducers/favorites';
 import { ADD_SELECTED_SUBCATEGORY,REMOVE_SELECTED_SUBCATEGORY,SET_SELECTED_SUBCATEGORYS} from '../reducers/selectedSubCategories';
-import { OPEN_SIDEBAR,CLOSE_SIDEBAR } from '../reducers/ui';
+import { OPEN_SIDEBAR,CLOSE_SIDEBAR } from '../reducers/config';
 
 export const addFavorite = (item: number) => ({
     type: ADD_FAVORITE_PRODUCT,

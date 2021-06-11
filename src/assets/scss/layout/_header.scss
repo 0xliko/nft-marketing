@@ -1,4 +1,17 @@
 @import "../base/variables";
+.landing-log{
+   position: fixed;
+   left: 0;
+   width: $leftbar-width;
+   height: $topbar-height;
+  .logo-box{
+    font-size: 24px;
+    padding: 25px 20px 0px 20px;
+    float: left;
+    width: $leftbar-width;
+    font-family: monospace;
+  }
+}
 .navbar-custom {
    background-color: $bg-dark;
    padding: 0 15px;
@@ -16,11 +29,14 @@
          margin-top: 15px;
          .sidebar-toggle{
             display: none;
+            &.landing{
+              display: none !important;
+            }
          }
          .link{
             color: white;
             text-decoration: none;
-            padding: 10px 12px;
+            padding: 9px 12px;
             float: left;
             &.active{
                color: #FFF266;
@@ -35,11 +51,12 @@
             border-radius: 20px;
             background: $bg-card-dark;
             float: right;
-            padding: 4px 18px;
+            padding: 4px 12px;
             color: white;
             text-decoration: none;
             outline: none;
             margin-top: -3px;
+            font-size: 10px;
             img{
                margin-right: 8px;
             }
@@ -97,5 +114,6 @@
          }
       }
    }
+
 }
 

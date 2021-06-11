@@ -4,20 +4,20 @@ import { connectRouter } from 'connected-react-router'
 
 import favorites, { FavoritesState } from './favorites'
 import selectedSubCategories, { SelectedSubCategoriesState } from './selectedSubCategories'
-import uiStatus, { UiStatus } from './ui'
+import configStatus, { ConfigStatus } from './config'
 
 const rootReducer = (history: History) =>
     combineReducers({
         favorites,
         selectedSubCategories,
-        uiStatus,
+        configStatus,
         router: connectRouter(history)
     })
 
 export interface State {
     favorites: FavoritesState,
     selectedSubCategories:SelectedSubCategoriesState,
-    uiStatus:UiStatus
+    configStatus:ConfigStatus,
 }
 
 export default rootReducer

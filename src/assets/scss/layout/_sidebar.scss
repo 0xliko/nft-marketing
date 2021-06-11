@@ -32,6 +32,7 @@
       height: calc(100vh - 70px);
       padding-left: 1px;
       overflow-y: auto;
+
       >li{
          display: block;
          // border-top: 1px solid $dark-gray1;
@@ -135,6 +136,7 @@
          }
          margin-bottom:5px;
       }
+
       .reset-filter{
          color: #FFF266;
          margin-left:8px;

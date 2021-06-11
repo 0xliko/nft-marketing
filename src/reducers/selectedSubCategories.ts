@@ -19,9 +19,8 @@ const remove = (items: string[], item: string): string[] => {
     return items.sort((a,b)=>a>b?1:-1);
 }
 const toggle = (items: string[], item: string): string[] => {
-    console.log(items,item)
-   if(items.indexOf(item)>-1) return remove(items,item);
-   else return add(items,item);
+    if(items.indexOf(item)>-1) return remove(items,item);
+    else return add(items,item);
 }
 
 const selectedSubCategories = (state: string = "", action: AnyAction) => {

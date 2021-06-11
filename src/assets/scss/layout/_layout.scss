@@ -5,9 +5,10 @@
 .content-page {
   margin-left: $leftbar-width;
   overflow: hidden;
-
   padding: 0 50px;
-
   min-height: 80vh;
   margin-top: $topbar-height;
+  &.landing{
+    margin-left: 0px;
+  }
 }

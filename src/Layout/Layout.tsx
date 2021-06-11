@@ -9,14 +9,15 @@ interface IProps{
     [key:string]:any
 }
 
-const Layout:React.FC<IProps> = ({ children, history }) => {
-  const {sidebar} = useSelector((state: State) => state.uiStatus);
+const Layout:React.FC<IProps> = ({ children, history,landing }) => {
+  const {sidebar} = useSelector((state: State) => state.configStatus);
   const reduxDispatch = useDispatch();
+
   return (
       <div id="wrapper">
-        <Header/>
-        <Sidebar/>
-        <div className="content-page">
+        <Header landing={landing}/>
+        {!landing && <Sidebar/>}
+        <div className={`content-page ${landing?"landing":""}`}>
            {children}
         </div>
         <div className={`overay-warpper ${sidebar?"open":""}`} onClick={()=>{

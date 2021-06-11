@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { store } from './services/reduxServices'
 import {Provider} from 'react-redux';
+
 import {Web3ReactProvider} from "@web3-react/core";
 import Web3 from 'web3'
 

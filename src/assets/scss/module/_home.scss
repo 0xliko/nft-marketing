@@ -1,0 +1,39 @@
+@import "../base/variables";
+.product-item{
+   background: $bg-card-dark;
+   position: relative;
+   font-size: 10px;
+   height: 16vw;
+  margin-bottom: 10px;
+.view{
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 80% !important;
+  left:10%;
+  }
+  img{
+     width: 100%;
+     object-fit: contain;
+  }
+   .product-favour-count{
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+     i.fa:before{
+        color:$red4;
+     }
+   }
+  .product-name{
+     position: absolute;
+     bottom: 5px;
+     left:5px;
+  }
+  .product-price{
+     position: absolute;
+     bottom: 5px;
+     right: 5px;
+     color: $blue3;
+  }
+}

@@ -80,8 +80,7 @@ const Sidebar: React.FC<IProps> = ({}) => {
 
     const initState = filterListFromStoreValue(selectedSubCategories);
     const [filterList, setFilterList] = useState<IProps>(initState);
-    const {uiStatus} = useSelector((state: State) => state);
-    const {sidebar} = useSelector((state: State) => state.uiStatus);
+    const {sidebar} = useSelector((state: State) => state.configStatus);
 
     const reduxDispatch = useDispatch();
     const toggleSelectedSubCategory = (id: number) => {
@@ -101,7 +100,7 @@ const Sidebar: React.FC<IProps> = ({}) => {
 
         <div className={`left-side-menu ${sidebar?"open":""}`}>
             <div className="logo-box">
-                TIDE ESTATES {sidebar}
+                TIDE ESTATES
             </div>
             <ul className="side-menu">
                 {

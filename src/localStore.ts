@@ -5,7 +5,8 @@ export const loadState = () => {
     }
     const json = JSON.parse(jsonString);
     return {
-        selectedSubCategories:json.selectedSubCategories
+        selectedSubCategories:json.selectedSubCategories,
+        favorites:json.favorites
     };
 };
 
@@ -13,7 +14,8 @@ export const saveState = (state:any) => {
 
     try {
         const toStore = {
-            selectedSubCategories:state.selectedSubCategories
+            selectedSubCategories:state.selectedSubCategories,
+            favorites:state.favorites
         };
 
         const serial = JSON.stringify(toStore);

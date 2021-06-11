@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Index from './pages/index';
-export default class App extends Component {
 
-  render() {
+import {IProps} from "./Interface";
+
+
+const App: React.FC<IProps> = ({}) => {
+
     return (
 
         <BrowserRouter>
@@ -12,10 +15,11 @@ export default class App extends Component {
         </BrowserRouter>
 
     );
-  }
+
 }
 
 const ScrollToTop = () => {
   window.scrollTo(0, 0);
   return null;
 };
+export default App;

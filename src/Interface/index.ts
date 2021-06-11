@@ -24,5 +24,16 @@ export interface IConnector{
     connector: InjectedConnector | WalletConnectConnector,
     icon:string
 }
+export interface IProduct{
+    id:number,
+    name:string,
+    price:number,
+    favourCount:number,
+    imgURL:any
+}
+export interface IProductGroup{
+    name:string,
+    items:IProduct[]
+}
 
 
